@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,14 +12,17 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/controlador.js' %}"></script>
 </head>
+
 <body>
     <div class="container">
         <div class="row">
             <div class="contenedor col-12 col-md-8 offset-md-2">
                 {% include 'includes/head.html' %}
                 {% include 'includes/nav.html' %}
+
                 <div class="contenido">
                     {% block content %}
+
                     {% endblock %}
                 </div>
                 {% include 'includes/footer.html' %}
@@ -26,4 +30,5 @@
         </div>
     </div>
 </body>
+
 </html>

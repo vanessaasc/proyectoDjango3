@@ -1,18 +1,18 @@
-
-*Cambia la cantidad de un producto en el carrito
-    @param {int} id: PK del registro del produto en el carrito 
-
+/**
+* Cambia la cantidad de un producto en el carrito
+* @param {int} id: PK del registro del produto en el carrito
+*/
 function cambiarCantidad(id) {
     let cantidad = document.getElementById('cantidad_'+id).value;
     let valorUnit = document.getElementById('cantidad_'+id).dataset.preciou;
     let url = "http://localhost:8000/productos/cambiarCantidad/";
     let datos = {
-        'id': id,
-        'cantidad': cantidad
-};
+    'id': id,
+    'cantidad': cantidad
+    };
     let total = parseFloat(cantidad) * parseFloat(valorUnit);
     document.getElementById('total_'+id).innerText = '$' + total;
-    mensajeAjax(url, datos, cambiarCantidadResp) 
+    mensajeAjax(url, datos, cambiarCantidadResp)
 }
 function cambiarCantidadResp(data) {
     document.getElementById('subtotal').innerText = '$' + data['subtotal'];
@@ -21,6 +21,7 @@ function cambiarCantidadResp(data) {
     document.getElementById('total').innerText = '$' + data['total'];
 }
 
+// El código para implementar la comunicación AJAX es el siguiente:
 /**
 * Consulta AJAX al servidor por método POST
 * @param {*} urlserver :Direccion de envio
@@ -30,25 +31,27 @@ function cambiarCantidadResp(data) {
 function mensajeAjax(urlserver, datos, callBackFunction) {
     const csrftoken = getCookie('csrftoken');
     fetch(urlserver, {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
             'Accept': 'application/json',
             'X-Requested-With': 'XMLHttpRequest',
             'X-CSRFToken': csrftoken,
-    },
-    body: JSON.stringify(datos) //JavaScript object of data to POST
-})
-    .then(response => response.json()) //Convierte la respuesta JSON en data
-    .then(data => {
-        //mostrarAviso(data)
-        callBackFunction(data)
+        },
+        body: JSON.stringify(datos) //JavaScript object of data to POST
     })
+        .then(response => response.json()) //Convierte la respuesta JSON en data
+        .then(data => {
+            //mostrarAviso(data)
+            callBackFunction(data)
+        })
     .catch((error) => {
         console.error('Error:', JSON.stringify(error));
-});
+    });
 }
 
+// Por seguridad implementada por Django, es necesario recuperar la cookie con el token de seguridad
+// en el navegador:
 /**
 * @param {*} name Nombre de la cookie
 * @returns el cvontenido de la cookie
@@ -65,7 +68,6 @@ function getCookie(name) {
                 break;
             }
         }
-    }
+    }    
     return cookieValue;
 }
-    

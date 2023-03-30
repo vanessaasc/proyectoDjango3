@@ -13,19 +13,19 @@
                 <th>Precio</th>
                 <th>Existencia</th>
                 <th></th
-                </thead>
-                <tbody>
-                    {% for prod in productos %}
-                    <tr>
-                        <td><img src="{{prod.imgPeque.url}}" alt="X"> </td>
-                        <td>{{prod.nombre}}</td>
-                        <td>{{prod.descripcion}}</td>
-                        <td>{{prod.precioUnitario}}</td>
-                        <td>{{prod.existencia}}</td>
-                        <td><a href="{% url 'un_producto' prod.id %}" type="button" class="btn btn-info">Ver detalle</a></td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
+            </thead>
+            <tbody>
+            {% for prod in productos %}
+                <tr>
+                    <td><img src="{{prod.imgPeque.url}}" alt="X"> </td>
+                    <td>{{prod.nombre}}</td>
+                    <td>{{prod.descripcion}}</td>
+                    <td>{{prod.precioUnitario}}</td>
+                    <td>{{prod.existencia}}</td>
+                    <td><a href="{% url 'verProductosCategoria' prod.id %}" type="button" class="btn btn-info">Ver detalle</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
         </table>
     </div>
 {% endblock %}
