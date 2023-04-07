@@ -31,6 +31,7 @@ function cambiarCantidadResp(data) {
 function mensajeAjax(urlserver, datos, callBackFunction) {
     const csrftoken = getCookie('csrftoken');
     fetch(urlserver, {
+        
             method: 'POST',
             credentials: 'same-origin',
             headers: {

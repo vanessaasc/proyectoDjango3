@@ -110,43 +110,41 @@ def cambiarCantidad(request):
     else: 
         return verCarrito(request)
 
-def consultarCarro(request): 
-    #get usuario 
-    regUsuario = request.user 
-    #filtrar productos de ese usuario en estado 'activo' 
-    listaCarrito = Carro.objects.filter(usuario= regUsuario, estado= 'activo').values('id', 
-'cantidad', 'valUnit', 'producto_imgPeque', 'productonombre','productounidad', 'producto_id') 
-    #renderizar 
-    listado = [] 
-    subtotal = 0 
-    for prod in listaCarrito: 
+def consultarCarro(request):
+    #get usuario
+    regUsuario = request.user
+    #filtrar productos de ese usuario en estado 'activo'
+    listaCarrito = Carro.objects.filter(usuario= regUsuario, estado= 'activo').values('id',
+    'cantidad', 'valUnit', 'producto__imgPeque', 'producto__nombre','producto__unidad', 'producto__id')
+    #renderizar
+    listado = []
+    subtotal = 0
+    for prod in listaCarrito:
         reg = {
-            'id': prod['id'], 
+            'id': prod['id'],
             'cantidad': prod['cantidad'],
-            'valUnit': prod['valUnit'], 
-            'imgPeque': prod['producto__imgPeque'], 
-            'nombre': prod['producto__nombre'], 
-            'unidad': prod['producto__unidad'], 
-            'total': prod['valUnit'] * prod['cantidad'], 
-            'prodId': prod['producto__id'], 
-        } 
-        subtotal += prod['valUnit'] * prod['cantidad'] 
-        
+            'valUnit': prod['valUnit'],
+            'imgPeque': prod['producto__imgPeque'],
+            'nombre': prod['producto__nombre'],
+            'unidad': prod['producto__unidad'],
+            'total': prod['valUnit'] * prod['cantidad'],
+            'prodId': prod['producto__id'],
+        }
+        subtotal += prod['valUnit'] * prod['cantidad']
         listado.append(reg)
-    envio = 8000 
-    if len(listado) == 0: 
-        envio = 0 
-    
-    context = { 
-        'titulo': 'Productos en el carrito de compras', 
-        'carrito': listado, 
-        'subtotal': subtotal, 
-        'iva': int(subtotal) * 0.19, 
-        'envio': envio, 
-        'total': int(subtotal) * 1.19 + envio 
-    } 
-    
-    return context
+        envio = 8000
+        if len(listado) == 0:
+            envio = 0
+        context = {
+            'titulo': 'Productos en el carrito de compras',
+            'carrito': listado,
+            'subtotal': subtotal,
+            'iva': int(subtotal) * 0.19,
+            'envio': envio,
+            'total': int(subtotal) * 1.19 + envio
+        }
+        return context
+
 
 def pagarCarrito(request): 
     context = consultarCarro(request) 

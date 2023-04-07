@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'appProductos',
     'appUsuarios',
-    'widget_tweaks'
+    'widget_tweaks',
+
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# EMAIL++++++++++++++++++++++++++++++
+EMAIL_HOST= 'smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER='espanaclaudia762@gmail.com'
+EMAIL_HOST_PASSWORD = 'yrapqsurqpyigubd '
+EMAIL_USE_TLS= True
