@@ -58,7 +58,7 @@ body{
     margin-left: 10%;
     width: 90%;
 }
-/*** BOTONES Y ENLACES *******/
+/********* BOTONES Y ENLACES *****************/
 .nav-link, a, #tituloPie, .dropdown-item{
     color: var(--color-text1);
 }
@@ -79,4 +79,29 @@ a:hover{color: var(--color-Select);}
     padding: 3px;
     margin-top: 2px;
 }
+
+
+/* Listar Productos------------------- */
+#listas {
+    position: relative;
+    padding: 10px;
+    border: none;
+    background-color: #0011ff;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+#listas i{
+    margin: 0 10px;
+}
+
+#listas:hover {
+    transform: scale(1.0);
+    transition:.2s;
+    background-color:#934a3a ;
+}
+
+
 

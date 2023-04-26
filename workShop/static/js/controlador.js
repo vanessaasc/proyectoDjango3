@@ -27,7 +27,7 @@ function cambiarCantidadResp(data) {
 * @param {*} urlserver :Direccion de envio
 * @param {*} datos :Data en formato JavaScript object
 * @param {*} callBackFunction : Funcion de retorno
-*/
+*/                                                                                                                                                                                                                                                                                                                                                                                                                                                  jh
 function mensajeAjax(urlserver, datos, callBackFunction) {
     const csrftoken = getCookie('csrftoken');
     fetch(urlserver, {
